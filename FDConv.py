@@ -1,4 +1,4 @@
-
+# This repository is copied from https://github.com/Linwei-Chen/FDConv.git
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
