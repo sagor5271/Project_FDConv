@@ -1,4 +1,4 @@
-# This repository is copied from https://github.com/Linwei-Chen/FDConv.git
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -260,7 +260,8 @@ class KernelSpatialModulation_Global(nn.Module):
         # return (self.func_channel(x_h) * self.func_channel(x_w)).sqrt(), (self.func_filter(x_h) * self.func_filter(x_w)).sqrt(), self.func_spatial(avg_x), self.func_kernel(avg_x)
         # return (self.func_channel(x_h) * self.func_channel(x_w)), (self.func_filter(x_h) * self.func_filter(x_w)), self.func_spatial(avg_x), self.func_kernel(avg_x)
         # return ((self.func_channel(x_h) + self.func_channel(x_w)) * csg).sigmoid_() * self.att_multi, ((self.func_filter(x_h) + self.func_filter(x_w)) * fsg).sigmoid_() * self.att_multi, self.func_spatial(avg_x), self.func_kernel(avg_x)
-        # return (self.func_channel(x_h) * self.func_channel(x_w) * csg), (self.func_filter(x_h) * self.func_filter(x_w) * fsg), self.func_spatial(avg_x), self.func_kernel(avg_x)
+        # This repository is copied from https://github.com/Linwei-Chen/FDConv.git
+         #return (self.func_channel(x_h) * self.func_channel(x_w) * csg), (self.func_filter(x_h) * self.func_filter(x_w) * fsg), self.func_spatial(avg_x), self.func_kernel(avg_x)
         # return (self.dropout(self.func_channel(x_h) * self.func_channel(x_w))), (self.dropout(self.func_filter(x_h) * self.func_filter(x_w))), self.func_spatial(avg_x), self.func_kernel(avg_x)
         # k_att = F.relu(self.func_kernel(x) - 0.8 * self.func_kernel(x_inverse))
         # k_att = k_att / (k_att.sum(dim=1, keepdim=True) + 1e-8)
