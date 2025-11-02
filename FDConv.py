@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 from numpy.linalg import matrix_rank
 from torch.utils.checkpoint import checkpoint
 
-from mmcv.cnn import CONV_LAYERS
 from torch import Tensor
 import torch.nn.functional as F
 import math
@@ -34,16 +33,6 @@ class StarReLU(nn.Module):
 
     def forward(self, x):
         return self.scale * self.relu(x) ** 2 + self.bias
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import math
-
-# Assuming StarReLU and checkpoint are defined elsewhere in your environment
-class StarReLU(nn.Module):
-    def forward(self, x):
-        return F.relu(x) # Placeholder definition
-
 class KernelSpatialModulation_Global(nn.Module):
     def __init__(self, in_planes, out_planes, kernel_size, groups=1, reduction=0.0625, kernel_num=4, min_channel=16, 
                  temp=1.0, kernel_temp=None, kernel_att_init='dyconv_as_extra', att_multi=1.0, # 🔥 সংশোধিত: att_multi=1.0 (স্থিতিশীল)
