@@ -310,12 +310,6 @@ class KernelSpatialModulation_Local(nn.Module):
         att_logit = att_logit.permute(0, 1, 3, 2) # b, kn, cin, k1*k2
         # print(att_logit.shape)
         return att_logit
-
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
 class FrequencyBandModulation(nn.Module):
     def _init_(self, 
                  in_channels,
@@ -505,8 +499,7 @@ def get_fft2freq(d1, d2, use_rfft=False):
         plt.title('Frequency Domain Distance')
         plt.show()
     return sorted_coords.permute(1, 0), freq_hw
-
-@CONV_LAYERS.register_module() # for mmdet, mmseg
+    
 class FDConv(nn.Conv2d):
     def _init_(self, 
                  *args, 
