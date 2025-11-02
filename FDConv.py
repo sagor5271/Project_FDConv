@@ -1,17 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.autograd
-import numpy as np
-import matplotlib.pyplot as plt
-from numpy.linalg import matrix_rank
-from torch.utils.checkpoint import checkpoint
-#from mmcv.cnn import CONV_LAYERS
-from torch import Tensor
-import torch.nn.functional as F
 import math
-from timm.models.layers import trunc_normal_
 import time
+import matplotlib.pyplot as plt
+from torch.utils.checkpoint import checkpoint
 
 class StarReLU(nn.Module):
     """
