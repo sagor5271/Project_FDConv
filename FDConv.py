@@ -541,7 +541,8 @@ class FDConv(nn.Conv2d):
 
         # Global attentions
         global_x = F.adaptive_avg_pool2d(x, 1)
-        channel_attention, filter_attention, spatial_attention, kernel_attention = self.KSM_Global(global_x)
+        # KSM_Global-এ চেকপয়েন্টিং সক্রিয় করা হলো (use_checkpoint=True)
+        channel_attention, filter_attention, spatial_attention, kernel_attention = self.KSM_Global(global_x, use_checkpoint=True)
         # Shapes:
         # channel_attention: (B,1,1,Cin( or 2Cin),1,1)
         # filter_attention:  (B,1,Cout,1,1,1)
@@ -608,6 +609,3 @@ class FDConv(nn.Conv2d):
         if self.bias is not None:
             out = out + self.bias.view(1, -1, 1, 1)
         return out
-
-
-
