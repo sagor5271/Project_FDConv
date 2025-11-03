@@ -610,17 +610,4 @@ class FDConv(nn.Conv2d):
         return out
 
 
-# =============================================================================
-# Example Usage and Self-test
-# =============================================================================
-if __name__ == '__main__':
-    torch.manual_seed(0)
-    x = torch.rand(4, 128, 64, 64)
-    m = FDConv(
-        in_channels=128, out_channels=64, kernel_size=3, stride=1, padding=1, bias=True,
-        kernel_num=8, reduction=0.0625, use_fdconv_if_c_gt=16, use_fdconv_if_k_in=(1, 3),
-        use_fbm_if_k_in=(3,), param_ratio=1, param_reduction=1.0, convert_param=True
-    )
-    print("FDConv module:", m)
-    y = m(x)
-    print("Output shape:", y.shape)
+
