@@ -679,21 +679,10 @@ class FDConv(nn.Conv2d):
         # target_rows = self.out_channels * self.kernel_size[0]  # যেমন 64 * 7 = 448
 # target_cols = self.in_channels * self.kernel_size[1]   # যেমন 3 * 7 = 21
 
-adaptive_weights_flat = torch.fft.irfft2(
-    torch.view_as_complex(DFT_map), 
-    s=(self.out_channels * self.kernel_size[0], self.in_channels * self.kernel_size[1]), 
-    dim=(1, 2)
-)
+adaptive_weights_flat = torch.fft.irfft2(torch.view_as_complex(DFT_map),s=(self.out_channels * self.kernel_size[0], self.in_channels * self.kernel_size[1]), dim=(1, 2))
 
 # Line A এবং Line B কে একত্রিত করে reshaping এবং permuting করা হলো:
-adaptive_weights = adaptive_weights_flat.reshape(
-    batch_size, 
-    1, 
-    self.out_channels, 
-    self.kernel_size[0], 
-    self.in_channels, 
-    self.kernel_size[1]
-).permute(0, 1, 2, 4, 3, 5) # (B, 1, OC, IC, KH, KW)
+adaptive_weights = adaptive_weights_flat.reshape(batch_size, 1, self.out_channels, self.kernel_size[0], self.in_channels, self.kernel_size[1]).permute(0, 1, 2, 4, 3, 5) # (B, 1, OC, IC, KH, KW)
         # print(spatial_attention, channel_attention, filter_attention)
         if hasattr(self, 'FBM'):
             x = self.FBM(x)
